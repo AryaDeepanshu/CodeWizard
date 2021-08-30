@@ -1,3 +1,4 @@
+$def with (posts)
 <div class="container">
     $if session["user"] == None:
         <h1>Hello CodeWizard</h1>
@@ -22,13 +23,14 @@
                 <button id="post-btn" class="btn btn-info btn-raised wave-effect" type="submit"><span class="mdi mdi-send"></span>Post></button>
             </form>
         </div>
+            $for post in posts:
                 <div class="post-card">
                     <div class="header">
                         <div class="avatar"></div>
-                        <a href="/profile">Deepanshu Arya</a>
+                        <a href="/profile">$post['user']['username']</a>
                     </div>
                     <div class="content">
-                        Test Content
+                        $post["content"]
                     </div>
                     <div class="footer">
                         <button class="btn btn-round wave-effect btn-raised btn-like"><span class="mdi mdi-thumb-up-outline"></span></button>

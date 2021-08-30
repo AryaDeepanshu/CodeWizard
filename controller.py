@@ -22,7 +22,10 @@ render = web.template.render('Viewes\Templates', base='MainLayout', globals={"se
 
 class Home:
     def GET(self):
-        return render.Home()
+        post_model = Posts.Posts()
+        posts = post_model.get_all_post()
+        return render.Home(posts)
+        
 
 class Register:
     def GET(self):
@@ -68,5 +71,6 @@ class PostActivity:
         post_model = Posts.Posts()
         post_model.insert_post(data)
         return "success"
+
 if __name__ == "__main__":
     app.run()
