@@ -2,7 +2,7 @@ import web
 from web.db import register_database
 from Models import RegisterModel, LoginModel
 
-# web.config.debug = False
+web.config.debug = False
 urls = (
     '/', 'Home',
     '/register','Register',
@@ -14,7 +14,7 @@ urls = (
 )
 
 app = web.application(urls, globals())
-session = web.session.Session(app,web.session.DiskStore("session"), initializer={"user": "none"})
+session = web.session.Session(app,web.session.DiskStore("session"), initializer={"user": None})
 session_data = session._initializer
 render = web.template.render('Viewes\Templates', base='MainLayout', globals={"session": session_data, "current_user": session_data["user"]})
 
@@ -54,7 +54,9 @@ class CheckLogin:
 
 class Logout:
     def GET(self):
-        session.kill()
+        session["user"] = None
+        session_data["user"] = None
+        # session.kill()
         return "success"
 
 if __name__ == "__main__":

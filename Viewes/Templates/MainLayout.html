@@ -24,8 +24,11 @@ $var js: static\js\jquery-3.6.0.min.js static\js\bootstrap.min.js static\js\mate
                 <li><a href="/Setting">Setting<div class="ripple-container"></div></a></li>
             </ul>
             <div class="pull-right">
-                <a href="/login" class="btn btn-link btn-default wave-effect">Login</a>
-                <a href="/register" class="btn btn-raised btn-default wave-effect">Register</a>
+                $if session['user'] == None:
+                    <a href="/login" class="btn btn-link btn-default wave-effect">Login</a>
+                    <a href="/register" class="btn btn-raised btn-default wave-effect">Register</a>
+                $else:
+                    <a id="logout-link" class="btn btn-link btn-default wave-effect">Logout</a>
             </div>
         </div>
     <br/><br/><br/>
