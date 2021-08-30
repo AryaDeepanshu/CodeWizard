@@ -28,6 +28,7 @@ $(document).ready(function(){
                     alert("Could not log in");
                 }else{
                     console.log("login as",res);
+                    window.location.href = "/";
                 }
             }
         });
