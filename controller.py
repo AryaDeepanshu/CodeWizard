@@ -1,18 +1,29 @@
 import web
 
 urls = (
-    '/', 'home',
-    "/register","register"
+    '/', 'Home',
+    '/register','Register',
+    '/postregistration', 'PostRegistration'
+
 )
 render = web.template.render('Viewes\Templates', base='MainLayout')
 app = web.application(urls, globals())
 
-class register:
+
+class Home:
+    def GET(self):
+        return render.Home()
+
+class Register:
     def GET(self):
         return render.Register()
 
-class home:
-    def GET(self):
-        return render.Home()
+
+class PostRegistration:
+    def POST(self):
+        data = web.input()
+        return data.username
+
+
 if __name__ == "__main__":
     app.run()
