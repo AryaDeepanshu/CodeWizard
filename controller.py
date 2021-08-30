@@ -1,6 +1,6 @@
 import web
 from web.db import register_database
-from Models import RegisterModel, LoginModel
+from Models import RegisterModel, LoginModel, Posts
 
 web.config.debug = False
 urls = (
@@ -9,7 +9,8 @@ urls = (
     '/postregistration', 'PostRegistration',
     '/login', 'Login',
     '/check-login', 'CheckLogin',
-    '/logout', 'Logout'
+    '/logout', 'Logout',
+    '/post-activity', 'PostActivity'
 
 )
 
@@ -59,5 +60,13 @@ class Logout:
         # session.kill()
         return "success"
 
+
+class PostActivity:
+    def POST(self):
+        data = web.input()
+        data.username = session_data['user']['username']
+        post_model = Posts.Posts()
+        post_model.insert_post(data)
+        return "success"
 if __name__ == "__main__":
     app.run()
