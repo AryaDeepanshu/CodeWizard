@@ -1,79 +1,36 @@
 $def with (posts)
 <div class="container">
-    $if session["user"] == None:
+    $if session['user'] == None:
         <h1>Hello CodeWizard</h1>
     $else:
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-info">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/home">CodeWizard</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Profile">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Discover">Discover</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Setting">Settings</a>
-                    </li>
-                </ul>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    $if session['user'] == None:
-                        <a class="btn btn-outline-light" href="/login" role="button">Log in</a>&nbsp;
-                        <a class="btn btn-outline-light" href="/register" role="button">Sign Up</a>
-                    $else:
-                        <a id="logout-link" class="btn btn-outline-light">Logout</a>
-                </div>
-            </div>
-        </div>
-    </nav>
-    <div class="container">
-        <div class="row">
-            <div class="d-none d-md-block col-md-2 sidebar">
-                <ul class="nav nav-sidebar">
-                    <li class="nav-item"><a class="nav-link" href="#">Home Feed</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Profile</a></li>
-                    <li class="nav-item"><a class="nav-link"href="#">Community</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Settings</a></li>
-                </ul>
-            </div>
-            <div class="col-sm-12 col-md-10 offset-md-2" style="background-color: #f5f5f5;">
-                <h1 class="page-header">Dashboard</h1>
-                <div class="col-md-6">
-                    <div class="card text-center">
-                        <div class="card-body">
-                            <form id="post-activity"  class="form-floating">
-                                <textarea name="content" class="post-input" placeholder="What's new, $session['user']['name']?" style="width:100%"></textarea><br>
-                                <button id="post-btn" class="btn btn-info" type="submit" style="align-self: right;">Post></button>
-                            </form>
+        <div class="col-sm-12 col-md-10 offset-md-2" style="background-color: #f5f5f5;">
+            <h1 class="page-header">Dashboard</h1>
+            <div class="col-md-6">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <form id="post-activity"  class="form-floating">
+                            <textarea name="content" class="post-input" placeholder="What's new, $session['user']['name']?" style="width:100%"></textarea><br>
+                            <button id="post-btn" class="btn btn-info" type="submit" style="align-self: right;">Post></button>
+                        </form>
+                    </div>
+                
+                </div><hr>
+                $for post in posts:
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="avatar"></div>
+                            <img src="https://community.kodular.io/user_avatar/community.kodular.io/deepanshu_arya/120/52521_2.png" width="36" height="36" class="rounded-circle" alt="...">
+                            <a href="/profile">$post['user']['username']</a>
                         </div>
-                    
-                    </div><hr>
-                    $for post in posts:
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="avatar"></div>
-                                <img src="..." class="rounded-start" alt="...">
-                                <a href="/profile">$post['user']['username']</a>
-                            </div>
-                            <div class="card-body">
-                                $post["content"]
-                            </div>
-                            <div class="card-footer">
-                                <button class="btn btn-info">like</button>
-                                <button class="btn btn-info">share</button>
-                            </div>
-                        </div><br>
-                </div>
+                        <div class="card-body">
+                            $post["content"]
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-info">like</button>
+                            <button class="btn btn-info">share</button>
+                        </div>
+                    </div><br>
             </div>
-            
         </div>
-    </div>
+    
 </div>

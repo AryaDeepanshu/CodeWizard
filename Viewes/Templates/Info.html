@@ -1,0 +1,57 @@
+$def with (user_info)
+<div class="col-sm-12 col-md-10 offset-md-2" style="background-color: #f5f5f5;">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
+    <div class="container">
+        <div class="img" style="    background-image: linear-gradient(150deg, rgba(63, 174, 255, .3)15%, rgba(63, 174, 255, .3)70%, rgba(63, 174, 255, .3)94%), url(https://bootdey.com/img/Content/flores-amarillas-wallpaper.jpeg);
+        height: 350px;background-size: cover;"></div>
+        <div class="card social-prof">
+            <div class="card-body">
+                <div class="wrapper">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="" class="user-profile">
+                    <h3>$user_info['name']</h3>
+                    <p>$user_info['about']</p>
+                </div>
+                <div class="row ">
+                    <div class="col-lg-12">
+                        <ul class=" nav nav-tabs justify-content-center s-nav">
+                            <li><a  href="/profile/$session['user']['username']">Activity</a></li>
+                            <li><a class="active" href="#">Info</a></li>
+                            <li><a href="#">Code</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body info-card social-about">
+                        <h2 class="text-blue">Basic Info</h2>
+                        <h4><strong>About Me</strong></h4>
+                        <p>$user_info['about']</p>
+                        <h4 class="mb-3"><strong>Hobbies</strong></h4>
+                        <p>$user_info['hobbies']</p>
+                        <h4 class="mb-3"><strong>Birthday</strong></h4>
+                        <div class="social-info">
+                            <i class="fas fa-birthday-cake mr-2"></i>
+                            <span>$user_info['birthday']</span>
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card info-card">
+                    <div class="card-body">
+                        <h2 class="text-blue">Proffessional</h2>
+                        <h4 class="mb-3"><strong>School</strong></h4>
+                        <p>asdfghjkl;</p>
+                        <h4 class="mb-3"><strong>Colledge</strong></h4>
+                        <p>lorem ipsum</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

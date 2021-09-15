@@ -1,5 +1,6 @@
 import web
 from web.db import register_database
+from web.webapi import data
 from Models import RegisterModel, LoginModel, Posts
 
 web.config.debug = False
@@ -10,7 +11,11 @@ urls = (
     '/login', 'Login',
     '/check-login', 'CheckLogin',
     '/logout', 'Logout',
-    '/post-activity', 'PostActivity'
+    '/post-activity', 'PostActivity',
+    '/profile/(.*)/info', 'userInfo',
+    '/profile/(.*)', 'Profile',
+    '/settings/(.*)', 'Settings',
+    '/update-settings', 'updateSettings'
 
 )
 
@@ -71,6 +76,37 @@ class PostActivity:
         post_model = Posts.Posts()
         post_model.insert_post(data)
         return "success"
+
+class Profile:
+    def GET(self, user):
+        post_model = Posts.Posts()
+        posts = post_model.get_user_post(user)
+        return render.Profile(posts,user)
+
+class userInfo:
+    def GET(self,user):
+        Login = LoginModel.LoginModel()
+        user_info = Login.get_profile(user)
+        return render.Info(user_info)
+
+
+class Settings:
+    def GET(self, user):
+        Login = LoginModel.LoginModel()
+        user_info = Login.get_profile(user)
+        return render.Settings(user_info)
+
+
+class updateSettings:
+    def POST(self):
+        data = web.input()
+        data.username = session_data['user']['username']
+        Settings_model = LoginModel.LoginModel()
+        if Settings_model.update_info(data):
+            return "success"
+        else:
+            return "A fatal error occured"
+
 
 if __name__ == "__main__":
     app.run()

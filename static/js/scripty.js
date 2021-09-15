@@ -58,7 +58,25 @@ $(document).ready(function(){
             data: form,
             success: function(res){
                 console.log(res)
+                window.location.href = window.location.href;
             }
         });
     });
+
+    $(document).on("submit", "#settings-form", function(e){
+        e.preventDefault();
+        form = $(this).serialize();
+        $.ajax({
+            url: '/update-settings',
+            type: 'POSt',
+            data: form,
+            success: function(res){
+                if(res == 'success'){
+                    window.location.href = window.location.href;
+                }else{
+                    alert(res);
+                }
+            }
+        })
+    })
 });
